@@ -1,10 +1,10 @@
 import * as React from "react"
 import { render } from "react-dom"
-import { MenuBar } from "../src/MenuBar"
+import { Editor } from "./Editor"
 
 export class Example extends React.Component<{}> {
   render() {
-    return <MenuBar />
+    return <Editor />
   }
 }
 
