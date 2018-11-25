@@ -1,0 +1,14 @@
+.idea
+.vscode
+.DS_Store
+*.log
+npm-debug.log*
+yarn-error.log*
+node_modules
+coverage
+public/dist/*
+config/dist/*
+dist/*
+.env
+.cache-loader/*
+stats/*
