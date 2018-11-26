@@ -11,12 +11,13 @@ type TMenuBarProps = { view: EditorView } & React.HTMLAttributes<HTMLDivElement>
 
 export class MenuBar extends React.Component<TMenuBarProps> {
   render() {
-    if (!this.props.view) {
+    const { view, ...rest } = this.props
+    if (!view) {
       return null
     }
     return (
-      <MenuContext.Provider value={{ view: this.props.view }}>
-        <div {...this.props} />
+      <MenuContext.Provider value={{ view }}>
+        <div {...rest} />
       </MenuContext.Provider>
     )
   }
