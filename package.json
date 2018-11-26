@@ -35,5 +35,9 @@
   "scripts": {
     "example:build": "node ./node_modules/typescript/lib/tsc --outDir example/dist -p example/tsconfig.json",
     "example:wds": "webpack-dev-server --config ./example/dist/webpack.config.js"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.6.0",
+    "@material-ui/icons": "^3.0.1"
   }
 }
