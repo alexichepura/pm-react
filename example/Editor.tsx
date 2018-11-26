@@ -6,13 +6,20 @@ import { schema } from "prosemirror-schema-basic"
 import { addListNodes } from "prosemirror-schema-list"
 import { exampleSetup } from "prosemirror-example-setup"
 
-// import { MenuBar } from "../src/MenuBar"
-import { Strong } from "../src/Strong"
+import { MenuBar } from "../src/MenuBar"
+import { Strong, Em } from "../src/MenuItem"
 
 export class Editor extends React.Component<{}> {
   editorNode: HTMLDivElement | null = null
   view: any
+  state = {
+    mounted: false
+  }
   componentDidMount() {
+    this.init()
+    this.setState({ mounted: true })
+  }
+  init() {
     // Mix the nodes from prosemirror-schema-list into the basic schema to
     // create a schema with list support.
     const mySchema = new Schema({
@@ -31,13 +38,13 @@ export class Editor extends React.Component<{}> {
       })
     })
   }
-  getView = () => {
-    return this.view
-  }
   render() {
     return (
       <div>
-        <Strong mark={schema.marks.strong} getView={this.getView} />
+        <MenuBar view={this.view}>
+          <Strong mark={schema.marks.strong} />
+          <Em mark={schema.marks.em} />
+        </MenuBar>
         <div ref={r => (this.editorNode = r)} style={{ border: "1px solid gray", minHeight: "200px" }} />
       </div>
     )
