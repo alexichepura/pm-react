@@ -7,6 +7,7 @@ export class Example extends React.Component<{}> {
     return (
       <div>
         <Editor />
+        <br />
         <Editor />
       </div>
     )

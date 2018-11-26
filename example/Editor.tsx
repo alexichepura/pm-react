@@ -8,16 +8,14 @@ import { exampleSetup } from "prosemirror-example-setup"
 
 import { MenuBar } from "../src/MenuBar"
 import { Strong, Em } from "../src/MenuItem"
+import { Content } from "../src/Content"
 
 export class Editor extends React.Component<{}> {
   editorNode: HTMLDivElement | null = null
   view: any
-  state = {
-    mounted: false
-  }
   componentDidMount() {
     this.init()
-    this.setState({ mounted: true })
+    this.forceUpdate()
   }
   init() {
     // Mix the nodes from prosemirror-schema-list into the basic schema to
@@ -45,7 +43,7 @@ export class Editor extends React.Component<{}> {
           <Strong mark={schema.marks.strong} />
           <Em mark={schema.marks.em} />
         </MenuBar>
-        <div ref={r => (this.editorNode = r)} style={{ border: "1px solid gray", minHeight: "200px" }} />
+        <Content getNode={node => (this.editorNode = node)} />
       </div>
     )
   }
