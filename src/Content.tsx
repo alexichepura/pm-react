@@ -4,7 +4,6 @@ import { createStyles, WithStyles, withStyles } from "@material-ui/core/styles"
 const jssStyles = () =>
   createStyles({
     root: {
-      border: "1px solid gray",
       "& .ProseMirror": {
         minHeight: "200px",
         padding: "4px 8px 4px 14px",
