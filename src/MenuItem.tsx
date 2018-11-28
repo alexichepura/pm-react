@@ -23,6 +23,9 @@ const jssStyles = () =>
     }
   })
 
+type TMenuItemState = {
+  isActive: boolean
+}
 type TMenuItemProps = {
   mark: MarkType
 } & ButtonProps
@@ -30,7 +33,7 @@ type TLeanMenuItemProps = {
   view: EditorView
 } & TMenuItemProps &
   WithStyles<typeof jssStyles, false>
-export class LeanMenuItemMark extends React.Component<TLeanMenuItemProps> {
+export class LeanMenuItemMark extends React.Component<TLeanMenuItemProps, TMenuItemState> {
   state = {
     isActive: this.isActive()
   }
@@ -45,6 +48,14 @@ export class LeanMenuItemMark extends React.Component<TLeanMenuItemProps> {
 
   isActive() {
     return markActive(this.props.mark)(this.props.view.state)
+  }
+
+  static getDerivedStateFromProps(props: TLeanMenuItemProps, state: TMenuItemState): TMenuItemState | null {
+    const newIsActive = markActive(props.mark)(props.view.state)
+    if (newIsActive !== state.isActive) {
+      return { isActive: newIsActive }
+    }
+    return null
   }
 
   render() {

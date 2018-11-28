@@ -34,7 +34,19 @@ export class Editor extends React.Component<{}> {
       state: EditorState.create({
         doc: DOMParser.fromSchema(mySchema).parse(domNode),
         plugins: exampleSetup({ schema: mySchema, menuBar: false, floatingMenu: false })
-      })
+      }),
+      dispatchTransaction: transaction => {
+        const { state, transactions } = this.view.state.applyTransaction(transaction)
+
+        this.view.updateState(state)
+
+        // if (transactions.some(tr => tr.docChanged)) {
+        //   this.props.onChange(state.doc)
+        // }
+
+        this.forceUpdate()
+      }
+      // attributes: this.props.attributes
     })
   }
   render() {
