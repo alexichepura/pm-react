@@ -7,7 +7,9 @@ type TMenuContext = {
 
 export const MenuContext = React.createContext({} as TMenuContext)
 
-type TMenuBarProps = { view: EditorView } & React.HTMLAttributes<HTMLDivElement>
+type TMenuBarProps = {
+  view: EditorView | null
+} & React.HTMLAttributes<HTMLDivElement>
 
 export class MenuBar extends React.Component<TMenuBarProps> {
   render() {

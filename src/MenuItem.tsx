@@ -1,13 +1,11 @@
+import Button, { ButtonProps } from "@material-ui/core/Button"
+import { createStyles, WithStyles, withStyles } from "@material-ui/core/styles"
 import { toggleMark } from "prosemirror-commands"
 import { MarkType } from "prosemirror-model"
 import { EditorState } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
 import * as React from "react"
 import { MenuContext } from "./MenuBar"
-import Button, { ButtonProps } from "@material-ui/core/Button"
-import FormatBold from "@material-ui/icons/FormatBold"
-import FormatItalic from "@material-ui/icons/FormatItalic"
-import { createStyles, WithStyles, withStyles } from "@material-ui/core/styles"
 
 const markActive = (type: MarkType) => (state: EditorState): boolean => {
   const { from, $from, to, empty } = state.selection
@@ -80,17 +78,7 @@ export class LeanMenuItemMark extends React.Component<TLeanMenuItemProps, TMenuI
 
 const StyledMenyItemMark = withStyles(jssStyles)(LeanMenuItemMark)
 
-export const MenuItemMark: React.SFC<TMenuItemProps> = props => (
-  <MenuContext.Consumer>{ctx => <StyledMenyItemMark view={ctx.view} {...props} />}</MenuContext.Consumer>
-)
-
-export const Strong: React.SFC<TMenuItemProps> = props => (
-  <MenuItemMark {...props}>
-    <FormatBold />
-  </MenuItemMark>
-)
-export const Em: React.SFC<TMenuItemProps> = props => (
-  <MenuItemMark style={{ fontStyle: "italic" }} {...props}>
-    <FormatItalic />
-  </MenuItemMark>
-)
+export const MenuItemMark: React.SFC<TMenuItemProps> = props => {
+  const ctx = React.useContext(MenuContext)
+  return <StyledMenyItemMark view={ctx.view} {...props} />
+}
