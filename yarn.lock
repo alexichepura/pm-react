@@ -64,6 +64,26 @@
     "@babel/runtime" "7.0.0"
     recompose "^0.29.0"
 
+"@material-ui/styles@^3.0.0-alpha.2":
+  version "3.0.0-alpha.2"
+  resolved "https://registry.npmjs.org/@material-ui/styles/-/styles-3.0.0-alpha.2.tgz#63abcc7e770bc62c4101cf7fa6857740a2e2e97d"
+  integrity sha512-H6M2NDt+YG1+vJYV4VkQd9EyDF9j+IVPWK3MJWRQKckP8amosVVqNyFNhKXp2OkKq4Zo/CmzmbJEvuyZOa/9mg==
+  dependencies:
+    "@babel/runtime" "7.1.2"
+    "@material-ui/utils" "^3.0.0-alpha.0"
+    classnames "^2.2.5"
+    deepmerge "^2.0.1"
+    hoist-non-react-statics "^3.0.0"
+    jss "^9.3.3"
+    jss-camel-case "^6.0.0"
+    jss-default-unit "^8.0.2"
+    jss-global "^3.0.0"
+    jss-nested "^6.0.1"
+    jss-props-sort "^6.0.0"
+    jss-vendor-prefixer "^7.0.0"
+    prop-types "^15.6.0"
+    warning "^4.0.1"
+
 "@material-ui/utils@^3.0.0-alpha.0":
   version "3.0.0-alpha.0"
   resolved "https://registry.npmjs.org/@material-ui/utils/-/utils-3.0.0-alpha.0.tgz#506fcaf531a9a8f58a73ff2d3dfaa36c0f238506"
