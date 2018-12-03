@@ -1,6 +1,7 @@
 import * as React from "react"
 import { MenuBar } from "./MenuBar"
-import { MarkStrong, MarkEm, MarkCode } from "./MenuItemsBasic"
+import { MarkLink } from "./MenuItemLink"
+import { MarkCode, MarkEm, MarkStrong } from "./MenuItemsBasic"
 import { TEditorView } from "./Schema"
 
 type TMenuBasicProps = {
@@ -13,6 +14,7 @@ export const MenuBasic: React.SFC<TMenuBasicProps> = props => {
       <MarkStrong />
       <MarkEm />
       <MarkCode />
+      <MarkLink />
     </MenuBar>
   )
 }

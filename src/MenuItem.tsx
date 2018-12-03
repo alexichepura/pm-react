@@ -22,17 +22,19 @@ export const MenuItemMark: React.SFC<TMenuItemProps> = props => {
     view: { state, dispatch }
   } = React.useContext(MenuContext)
   const classes = useStyles({})
-  const { mark, ...rest } = props
+  const { mark, onClick, ...rest } = props
   const isActive = isMarkActive(mark)(state)
-  const onClick = () => {
-    toggleMark(mark)(state, dispatch)
-  }
+  const _onClick =
+    onClick ||
+    function() {
+      toggleMark(mark)(state, dispatch)
+    }
   return (
     <Button
       size="small"
       variant={isActive ? "contained" : "text"}
       color={isActive ? "primary" : "default"}
-      onClick={onClick}
+      onClick={_onClick}
       classes={classes}
       {...rest}
     />
