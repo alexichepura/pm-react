@@ -4,7 +4,13 @@ import { Editor } from "./Editor"
 
 export class Example extends React.Component<{}> {
   render() {
-    return <Editor />
+    return (
+      <div>
+        <Editor />
+        <br />
+        <Editor />
+      </div>
+    )
   }
 }
 
