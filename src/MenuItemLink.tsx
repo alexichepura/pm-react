@@ -9,17 +9,23 @@ import { MenuItemMark } from "./MenuItem"
 export const MarkLink: React.SFC<ButtonProps> = props => {
   const ctx = useContext(MenuContext)
   const [isOpen, setOpen] = useState(false)
+
+  const onOpen = () => setOpen(true)
+  const onOk = () => setOpen(false)
+  const onClose = () => setOpen(false)
   return (
-    <MenuItemMark mark={ctx.view.state.schema.marks.link} onClick={() => setOpen(true)} {...props}>
-      <Link />
-      <Dialog open={isOpen} onClose={() => setOpen(false)}>
+    <>
+      <MenuItemMark mark={ctx.view.state.schema.marks.link} onClick={onOpen} {...props}>
+        <Link />
+      </MenuItemMark>
+      <Dialog open={isOpen} onClose={onClose}>
         <DialogTitle>Link</DialogTitle>
         <DialogContent />
         <DialogActions>
-          <Button onClick={() => setOpen(false)}>OK</Button>
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={onOk}>OK</Button>
+          <Button onClick={onClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
-    </MenuItemMark>
+    </>
   )
 }
