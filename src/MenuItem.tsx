@@ -6,14 +6,14 @@ import * as React from "react"
 import { MenuContext } from "./MenuBar"
 import { isMarkActive } from "./util"
 
-type TUseMenuItemContextReturn = [boolean, () => void]
+type TUseMenuItemContextReturn = [boolean, (attrs?: any) => void]
 export const useMenuItemContext = (mark: MarkType): TUseMenuItemContextReturn => {
   const { view } = React.useContext(MenuContext)
   const isActive = isMarkActive(mark)(view.state)
   return [
     isActive,
-    function() {
-      toggleMark(mark)(view.state, view.dispatch)
+    function(attrs?: any) {
+      toggleMark(mark, attrs)(view.state, view.dispatch)
     }
   ]
 }
