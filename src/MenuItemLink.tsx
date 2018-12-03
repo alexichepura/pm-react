@@ -4,26 +4,36 @@ import Link from "@material-ui/icons/Link"
 import * as React from "react"
 import { useContext, useState } from "react"
 import { MenuContext } from "./MenuBar"
-import { MenuItemMark } from "./MenuItem"
+import { MenuItemButton, useMenuItemContext } from "./MenuItem"
 
 export const MarkLink: React.SFC<ButtonProps> = props => {
   const ctx = useContext(MenuContext)
   const [isOpen, setOpen] = useState(false)
+  const [isActive, toggle] = useMenuItemContext(ctx.view.state.schema.marks.link)
 
-  const onOpen = () => setOpen(true)
-  const onOk = () => setOpen(false)
-  const onClose = () => setOpen(false)
+  const handleToggle = () => {
+    if (isActive) {
+      toggle()
+    } else {
+      setOpen(true)
+    }
+  }
+  const close = () => setOpen(false)
+  const ok = () => {
+    toggle()
+    close()
+  }
   return (
     <>
-      <MenuItemMark mark={ctx.view.state.schema.marks.link} onClick={onOpen} {...props}>
+      <MenuItemButton isActive={isActive} onToggle={handleToggle} {...props}>
         <Link />
-      </MenuItemMark>
-      <Dialog open={isOpen} onClose={onClose}>
+      </MenuItemButton>
+      <Dialog open={isOpen} onClose={close}>
         <DialogTitle>Link</DialogTitle>
         <DialogContent />
         <DialogActions>
-          <Button onClick={onOk}>OK</Button>
-          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={ok}>OK</Button>
+          <Button onClick={close}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </>
