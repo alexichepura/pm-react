@@ -25,8 +25,8 @@ const useStyles = makeStyles({
     display: "inline-block",
     padding: 0,
     minWidth: 0,
-    width: "48px",
-    height: "48px"
+    width: "36px",
+    height: "36px"
   }
 })
 type TMenuItemButtonProps = {
