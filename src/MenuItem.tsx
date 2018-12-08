@@ -6,6 +6,18 @@ import * as React from "react"
 import { MenuContext } from "./MenuBar"
 import { isMarkActive } from "./util"
 
+type TUseMenuItemContextReturn = [boolean, (attrs?: any) => void]
+export const useMenuItemContext = (mark: MarkType): TUseMenuItemContextReturn => {
+  const { view } = React.useContext(MenuContext)
+  const isActive = isMarkActive(mark)(view.state)
+  return [
+    isActive,
+    function(attrs?: any) {
+      toggleMark(mark, attrs)(view.state, view.dispatch)
+    }
+  ]
+}
+
 const useStyles = makeStyles({
   root: {
     boxShadow: "none",
@@ -13,30 +25,30 @@ const useStyles = makeStyles({
     display: "inline-block"
   }
 })
-
-type TMenuItemProps = {
-  mark: MarkType
+type TMenuItemButtonProps = {
+  isActive: boolean
+  onToggle: () => void
 } & ButtonProps
-export const MenuItemMark: React.SFC<TMenuItemProps> = props => {
-  const {
-    view: { state, dispatch }
-  } = React.useContext(MenuContext)
+export const MenuItemButton: React.SFC<TMenuItemButtonProps> = props => {
   const classes = useStyles({})
-  const { mark, onClick, ...rest } = props
-  const isActive = isMarkActive(mark)(state)
-  const _onClick =
-    onClick ||
-    function() {
-      toggleMark(mark)(state, dispatch)
-    }
+  const { isActive, onToggle, ...rest } = props
   return (
     <Button
       size="small"
       variant={isActive ? "contained" : "text"}
       color={isActive ? "primary" : "default"}
-      onClick={_onClick}
       classes={classes}
+      onClick={onToggle}
       {...rest}
     />
   )
+}
+
+type TMenuItemProps = {
+  mark: MarkType
+} & ButtonProps
+export const MenuItemMark: React.SFC<TMenuItemProps> = props => {
+  const { mark, ...rest } = props
+  const [isActive, toggle] = useMenuItemContext(mark)
+  return <MenuItemButton isActive={isActive} onToggle={toggle} {...rest} />
 }
