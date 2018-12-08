@@ -3,8 +3,8 @@ import Code from "@material-ui/icons/Code"
 import FormatBold from "@material-ui/icons/FormatBold"
 import FormatItalic from "@material-ui/icons/FormatItalic"
 import * as React from "react"
-import { MenuContext } from "./MenuBar"
-import { MenuItemMark } from "./MenuItem"
+import { MenuContext } from "../MenuBar"
+import { MenuItemMark } from "../MenuItem"
 
 export const MarkStrong: React.SFC<ButtonProps> = props => {
   const { view } = React.useContext(MenuContext)
