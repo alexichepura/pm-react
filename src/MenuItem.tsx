@@ -22,7 +22,11 @@ const useStyles = makeStyles({
   root: {
     boxShadow: "none",
     borderRadius: 0,
-    display: "inline-block"
+    display: "inline-block",
+    padding: 0,
+    minWidth: 0,
+    width: "48px",
+    height: "48px"
   }
 })
 type TMenuItemButtonProps = {
