@@ -3,7 +3,7 @@ import { MenuBar } from "../MenuBar"
 import { MarkLink } from "./menu-item-link"
 import { MarkCode, MarkEm, MarkStrong } from "./menu-item"
 import { TEditorView } from "./schema"
-import { NodeListBulleted, NodeListNumbered } from "./menu-item-list"
+import { NodeListBulleted, NodeListNumbered, NodeListIndentDecrease, NodeListIndentIncrease } from "./menu-item-list"
 
 type TMenuBasicProps = {
   view: TEditorView | null
@@ -18,6 +18,8 @@ export const MenuBasic: React.SFC<TMenuBasicProps> = props => {
       <MarkLink />
       <NodeListBulleted />
       <NodeListNumbered />
+      <NodeListIndentDecrease />
+      <NodeListIndentIncrease />
     </MenuBar>
   )
 }

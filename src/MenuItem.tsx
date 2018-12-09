@@ -30,12 +30,12 @@ const useStyles = makeStyles({
   }
 })
 type TMenuItemButtonProps = {
-  isActive: boolean
+  isActive?: boolean
   onToggle: () => void
 } & ButtonProps
 export const MenuItemButton: React.SFC<TMenuItemButtonProps> = props => {
   const classes = useStyles({})
-  const { isActive, onToggle, ...rest } = props
+  const { isActive = false, onToggle, ...rest } = props
   return (
     <Button
       size="small"

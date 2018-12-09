@@ -1,6 +1,6 @@
 import { MarkType, NodeType } from "prosemirror-model"
 import { EditorState, NodeSelection } from "prosemirror-state"
-import { findParentNodeOfType } from "prosemirror-utils"
+import { ContentNodeWithPos, hasParentNodeOfType } from "prosemirror-utils"
 
 export const isMarkActive = (type: MarkType) => (state: EditorState): boolean => {
   const { from, $from, to, empty } = state.selection
@@ -13,8 +13,10 @@ export const isNodeActive = (type: NodeType, attrs = {}) => (state: EditorState)
     return selection.node.hasMarkup(type, attrs)
   }
 
-  return Boolean(findParentNodeOfType(type)(selection))
+  return hasParentNodeOfType(type)(selection)
 
   // const { $from, to } = selection
   // return to <= $from.end() && $from.parent.hasMarkup(type, attrs)
 }
+
+export type TContentNodeWithPosArray = (ContentNodeWithPos | undefined)[]
