@@ -1,11 +1,6 @@
-import { MarkType, NodeType } from "prosemirror-model"
+import { NodeType } from "prosemirror-model"
 import { EditorState, NodeSelection } from "prosemirror-state"
 import { ContentNodeWithPos, hasParentNodeOfType } from "prosemirror-utils"
-
-export const isMarkActive = (type: MarkType) => (state: EditorState): boolean => {
-  const { from, $from, to, empty } = state.selection
-  return empty ? Boolean(type.isInSet(state.storedMarks || $from.marks())) : state.doc.rangeHasMark(from, to, type)
-}
 
 export const isNodeActive = (type: NodeType, attrs = {}) => (state: EditorState): boolean => {
   const { selection } = state

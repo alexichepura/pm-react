@@ -4,12 +4,11 @@ import { toggleMark } from "prosemirror-commands"
 import { MarkType } from "prosemirror-model"
 import * as React from "react"
 import { MenuContext } from "./MenuBar"
-import { isMarkActive } from "./util"
 
 type TUseMenuItemContextReturn = [boolean, (attrs?: any) => void]
 export const useMenuItemContext = (mark: MarkType): TUseMenuItemContextReturn => {
   const { view } = React.useContext(MenuContext)
-  const isActive = isMarkActive(mark)(view.state)
+  const isActive = !toggleMark(mark)(view.state)
   return [
     isActive,
     function(attrs?: any) {
