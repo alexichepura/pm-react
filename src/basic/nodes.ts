@@ -15,6 +15,7 @@ const listNodes = {
   list_item: {
     ...listItem,
     content: "paragraph block*"
+    // content: "paragraph (ordered_list | bullet_list)*"
   }
 }
 
