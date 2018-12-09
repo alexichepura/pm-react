@@ -5,6 +5,7 @@ import { MarkCode, MarkEm, MarkStrong } from "./menu-item"
 import { TEditorView } from "./schema"
 import { NodeListBulleted, NodeListNumbered, NodeListIndentDecrease, NodeListIndentIncrease } from "./menu-item-list"
 import { NodeHistoryRedo, NodeHistoryUndo } from "./menu-item-history"
+import { MenuBlockTypeSelect } from "./MenuBlockTypeSelect"
 
 type TMenuBasicProps = {
   view: TEditorView | null
@@ -15,6 +16,7 @@ export const MenuBasic: React.SFC<TMenuBasicProps> = props => {
     <MenuBar view={props.view}>
       <NodeHistoryUndo />
       <NodeHistoryRedo />
+      <MenuBlockTypeSelect />
       <MarkStrong />
       <MarkEm />
       <MarkCode />
