@@ -3,8 +3,8 @@ import Button, { ButtonProps } from "@material-ui/core/Button"
 import Link from "@material-ui/icons/Link"
 import * as React from "react"
 import { useContext, useState } from "react"
-import { MenuContext } from "./MenuBar"
-import { MenuItemButton, useMenuItemContext } from "./MenuItem"
+import { MenuContext } from "../MenuBar"
+import { MenuItemButton, useMenuItemContext } from "../MenuItem"
 import { MarkType } from "prosemirror-model"
 
 export const MarkLink: React.SFC<ButtonProps> = props => {
@@ -13,7 +13,7 @@ export const MarkLink: React.SFC<ButtonProps> = props => {
   const linkMark: MarkType = view.state.schema.marks.link
   const [isActive, toggle] = useMenuItemContext(linkMark)
   const mark = linkMark.isInSet(view.state.selection.$from.marks())
-  let attrs: TLinkAttributes = Object.assign(
+  const attrs: TLinkAttributes = Object.assign(
     {
       href: ""
     },

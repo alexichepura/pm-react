@@ -5,8 +5,9 @@ import { EditorState } from "prosemirror-state"
 import { EditorView } from "prosemirror-view"
 import * as React from "react"
 import { Content } from "../src/Content"
-import { MenuBasic } from "../src/MenuBasic"
-import { schema, TEditorView } from "../src/Schema"
+import { MenuBasic } from "../src/basic/menu"
+import { schema, TEditorView } from "../src/basic/schema"
+import { plugins } from "../src/basic/plugins"
 
 type TEditorProps = {
   onChange?: (doc: ProsemirrorNode) => void
@@ -26,7 +27,8 @@ export class Editor extends React.Component<TEditorProps> {
     const editorNode = this.editorNode!
     this.view = new EditorView(editorNode, {
       state: EditorState.create({
-        doc: DOMParser.fromSchema(schema).parse(domNode)
+        doc: DOMParser.fromSchema(schema).parse(domNode),
+        plugins
       }),
       dispatchTransaction: transaction => {
         const view = this.view!
